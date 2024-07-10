@@ -4,6 +4,14 @@
 
 This project is a React-based web application that simulates venture capital (VC) liquidation preferences and their impact on payout structures for VCs and founders at different exit values. It provides an interactive tool for entrepreneurs, investors, and students to understand how different liquidation preference terms affect the distribution of returns in various exit scenarios.
 
+## Explanation
+This simulation shows how liquidation preferences affect the payout structure between VCs and founders at different exit values. Adjust the parameters to see how they impact the distribution of returns.
+
+Investment Amount: The amount invested by the VC.
+Liquidation Preference Multiple: Determines the preference amount (Investment * Multiple).
+VC Ownership Percentage: The VC's equity stake in the company.
+Participation: If off, VC gets the greater of preference or ownership %. If on, VC gets preference plus pro-rata share of remaining (capped at 100% of exit value).
+
 ## AI-Assisted Development
 
 This entire project, including the code, documentation, and this README, was created with the assistance of Claude, an AI language model developed by Anthropic. Claude is part of the Claude 3 model family, specifically version 3.5 Sonnet, with knowledge cut-off in April 2024.
