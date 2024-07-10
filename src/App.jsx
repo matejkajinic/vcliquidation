@@ -85,7 +85,7 @@ const VCLiquidationSimulation = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">VC Liquidation Preference Simulation</h1>
         <div className="mb-6">
           <label className="block mb-2">
@@ -159,7 +159,7 @@ const VCLiquidationSimulation = () => {
         </div>
         <div className="bg-gray-800 p-4 rounded mb-6">
           <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={generateData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+            <LineChart data={generateData} margin={{ top: 20, right: 30, left: 60, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#555" />
               <XAxis
                 dataKey="exitValue"
@@ -169,7 +169,7 @@ const VCLiquidationSimulation = () => {
               />
               <YAxis
                 tickFormatter={formatCurrency}
-                label={{ value: 'Payout', angle: -90, position: 'insideLeft', offset: -5, fill: '#e0e0e0' }}
+                label={{ value: 'Payout', angle: -90, position: 'insideLeft', offset: -45, fill: '#e0e0e0' }}
                 stroke="#e0e0e0"
                 domain={[0, maxPayoutValue]}
               />
@@ -184,13 +184,26 @@ const VCLiquidationSimulation = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
-        <div className="bg-gray-800 p-4 rounded">
+        <div className="bg-gray-800 p-4 rounded mb-6">
           <h2 className="text-xl font-semibold mb-2">Current Scenario: {currentScenario.name}</h2>
           <ul className="list-disc pl-5 mt-2">
             <li><strong>Investment Amount:</strong> {formatCurrency(currentScenario.investmentAmount)}</li>
             <li><strong>Liquidation Preference Multiple:</strong> {currentScenario.multiple}x</li>
             <li><strong>VC Ownership Percentage:</strong> {currentScenario.ownershipPercentage}%</li>
             <li><strong>Participation:</strong> {currentScenario.hasParticipation ? 'Yes' : 'No'}</li>
+          </ul>
+        </div>
+        <div className="mt-8 bg-gray-800 p-4 rounded">
+          <h2 className="text-xl font-semibold mb-2">Explanation</h2>
+          <p className="mb-2">
+            This simulation shows how liquidation preferences affect the payout structure between VCs and founders
+            at different exit values. Adjust the parameters to see how they impact the distribution of returns.
+          </p>
+          <ul className="list-disc pl-5 mt-2">
+            <li><strong>Investment Amount:</strong> The amount invested by the VC.</li>
+            <li><strong>Liquidation Preference Multiple:</strong> Determines the preference amount (Investment * Multiple).</li>
+            <li><strong>VC Ownership Percentage:</strong> The VC's equity stake in the company.</li>
+            <li><strong>Participation:</strong> If off, VC gets the greater of preference or ownership %. If on, VC gets preference plus pro-rata share of remaining (capped at 100% of exit value).</li>
           </ul>
         </div>
       </div>
